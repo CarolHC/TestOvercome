@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+<!--   <cron> -->
+<!--     <url>/task/dailyNotification</url> -->
+<!--     <description>Notificacion diaria de reporte de horas</description> -->
+<!--     <schedule>every day 20:00</schedule> -->
+<!--     <timezone>America/Mexico_City</timezone> -->
+<!--   </cron> -->
+</cronentries>

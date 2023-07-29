@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+    <threadsafe>true</threadsafe>  
+    <sessions-enabled>true</sessions-enabled>  
+    <precompilation-enabled>true</precompilation-enabled>
+    <url-stream-handler>urlfetch</url-stream-handler>
+    <runtime>java8</runtime>
+    <!-- Configure java.util.logging -->
+	<system-properties>
+	    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+	    <property name="file.encoding" value="UTF-8" />
+	    <property name="DEFAULT_ENCODING" value="UTF-8" />
+	</system-properties>
+    <static-files>
+	    <include path="/favicon-16x16.png" expiration="1d" />
+		<include path="/favicon-32x32.png" expiration="1d" />
+		<include path="/android-chrome-192x192.png" expiration="1d" />
+		<include path="/android-chrome-256x256.png" expiration="1d" />
+		<include path="/apple-touch-icon.png" expiration="1d" />
+		<include path="/browserconfig.xml" expiration="1d" />
+		<include path="/mstile-150x150.png" expiration="1d" />
+		<include path="/safari-pinned-tab.svg" expiration="1d" />
+    	<include path="/manifest.json" expiration="1s" />
+    	<include path="/favicon.ico" expiration="1d" />
+  		<include path="/vendor/**" expiration="1d" />
+  		<include path="/css/**" expiration="1d" />
+  		<include path="/js/**" expiration="1d" />
+  		<include path="/img/**" expiration="1d" />  		
+  	</static-files>
+</appengine-web-app>

@@ -1,0 +1,60 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    
+    <http pattern="/vendor/**" security="none" />
+    <http pattern="/task/**" security="none" />
+    <http pattern="/js/**" security="none" />
+    <http pattern="/css/**" security="none" />
+    <http pattern="/xml/**" security="none" />
+    <http pattern="/img/**" security="none" />
+    <http pattern="/public/**" security="none" />
+    <http pattern="/_ah/spi/**" security="none" />
+	<http pattern="/_ah/admin/**" security="none" />
+	<http pattern="/_ah/upload/**" security="none" />
+	<http pattern="/_ah/sessioncleanup/**" security="none" />
+	<http pattern="/login" security="none" />
+    <http pattern="/check" security="none" />
+    <http pattern="/loginfailed" security="none" />
+    <http pattern="/favicon.ico" security="none" />
+    <http pattern="/favicon-16x16.png" security="none" />
+    <http pattern="/favicon-32x32.png" security="none" />
+    <http pattern="/android-chrome-192x192.png" security="none" />
+    <http pattern="/android-chrome-256x256.png" security="none" />
+    <http pattern="/apple-touch-icon.png" security="none" />
+    <http pattern="/browserconfig.xml" security="none" />
+    <http pattern="/mstile-150x150.png" security="none" />
+    <http pattern="/safari-pinned-tab.svg" security="none" />
+    <http pattern="/manifest.json" security="none" />
+
+    
+     
+    <global-method-security secured-annotations="enabled"  authentication-manager-ref="authentication-manager"/>
+    
+    <http use-expressions="true" create-session="ifRequired" auto-config="true" disable-url-rewriting="true" authentication-manager-ref="authentication-manager">
+		<intercept-url pattern="/**" access="isAuthenticated()"/>
+		<form-login login-page="/login" authentication-failure-url="/loginfailed" default-target-url="/" always-use-default-target="true" />
+        <logout logout-success-url="/login" />
+<!--         <custom-filter after="BASIC_AUTH_FILTER" ref="urlFilter" /> -->
+        
+    </http>       
+    
+<!--     <beans:bean id="OcAuthenticationProvider" class="com.overcome.test.security.OcAuthenticationProvider" > -->
+<!--         <beans:property name="userService" ref="userService" /> -->
+<!--         <beans:property name="userFunctions" ref="userFunctions" /> -->
+<!--     </beans:bean> -->
+    
+<!--     <beans:bean id="authSuccessHandler" class="com.overcome.test.security.AuthSuccessHandler" />     -->
+ 
+ 	<authentication-manager alias="authentication-manager">
+ 		<authentication-provider>
+ 			<user-service>
+				<user name="test" password="123" authorities="admin" />
+	    	</user-service>
+ 		</authentication-provider>
+<!--      	<authentication-provider ref="OcAuthenticationProvider" /> -->
+	</authentication-manager>	
+</beans:beans>
+<!-- SANDBOX -->

@@ -1,0 +1,68 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<mvc:annotation-driven />
+
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/vendor/" mapping="/vendor/**" />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="es_MX" />
+		<property name="cookieName" value="myAppLocaleCookie" />
+		<property name="cookieMaxAge" value="3600" />
+	</bean>
+
+	<mvc:interceptors>
+		<bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="locale" />
+		</bean>
+	</mvc:interceptors>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" >
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="OfyService" class="com.overcome.dao.OfyService" factory-method="getInstance">
+		<constructor-arg name="classes">
+			<array value-type="java.lang.Class">
+				<value>com.overcome.test.entity.ExampleEntity</value>
+			</array>
+		</constructor-arg>
+	</bean>
+
+	<bean id="ServiceFactory" class="com.overcome.test.ServiceFactory" factory-method="getInstance">
+		<property name="exampleEntityService" ref="exampleEntityService" />
+	</bean>
+
+	<!-- USER -->
+	<bean id="exampleEntityDao" class="com.overcome.dao.ObjectifyDao">
+		<constructor-arg name="clazz" value="com.overcome.test.entity.ExampleEntity" />
+	</bean>
+	<bean id="exampleEntityService"
+		class="com.overcome.test.service.impl.ExampleEntityServiceImpl">
+		<property name="objectifyDao" ref="exampleEntityDao" />
+	</bean>
+	
+	<!-- CONTROLLERS -->
+	
+	<bean id="GlobalController"   class="com.overcome.test.controller.GlobalController"  lazy-init="true" />
+
+</beans>

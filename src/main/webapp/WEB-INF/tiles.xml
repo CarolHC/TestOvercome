@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- PRINT -->
+	<definition name="base" template="/WEB-INF/templates/pages/layout.jsp">
+		<put-attribute name="title" value="CONA" cascade="true" />
+		<put-list-attribute name="scripts" cascade="true" inherit="true">
+			<add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" />
+		</put-list-attribute>
+		<put-list-attribute name="styles" inherit="true" cascade="true">
+		</put-list-attribute>
+	</definition>
+	
+	<!-- PAGINAS -->
+	<definition name="page.panel" extends="base">
+		<put-attribute name="title" value="Panel" cascade="true" />
+		<put-attribute name="body" cascade="true" value="/WEB-INF/templates/pages/panel.jsp" />
+	</definition>
+	
+	<!-- PAGINAS -->
+	<definition name="page.login" extends="base">
+		<put-attribute name="title" value="Login" cascade="true" />
+		<put-attribute name="body" cascade="true" value="/WEB-INF/templates/pages/login.jsp" />
+	</definition>
+	
+</tiles-definitions>
+
+<!-- Invoice -->
+
+
